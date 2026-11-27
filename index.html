@@ -3,90 +3,183 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>仕入れ請求書の入力 | ひなた製菓 社内システム</title>
+<title>仕入請求書の新規入力｜HINATA Works（ひなた製菓 社内システム）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Cpath d='M8.5 21.5h15M11.5 21.5a4.5 4.5 0 0 1 9 0' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 9.5V12M9.8 12.6l1.8 1.8M22.2 12.6l-1.8 1.8' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="appbar">
-  <div class="brand">ひなた製菓 社内システム</div>
-  <div class="note">※研修用の練習サイトです。入力した内容はどこにも送られません</div>
-</header>
+<!-- アイコン（すべてこのファイルの中の線画。外からは何も読み込まない） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.2 12 3l9 7.2V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.8l2.5 11.6a1 1 0 0 0 1 .8h8.6a1 1 0 0 0 1-.8L20 7.5H6.2"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 4.8-9 4.8-9-4.8z"/><path d="m3 12 9 4.8 9-4.8"/><path d="m3 16.2 9 4.8 9-4.8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.7a3.5 3.5 0 0 1 0 6.6"/><path d="M18.3 14.4a6.5 6.5 0 0 1 3.2 5.6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8.5 16v-4"/><path d="M12.5 16V8"/><path d="M16.5 16v-6"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h9"/><path d="M17 6h3"/><circle cx="15" cy="6" r="2"/><path d="M4 12h3"/><path d="M11 12h9"/><circle cx="9" cy="12" r="2"/><path d="M4 18h10"/><path d="M18 18h2"/><circle cx="16" cy="18" r="2"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.3a2.6 2.6 0 0 1 5 .9c0 1.8-2.5 2.2-2.5 3.8"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4.5 19.5h15"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9.5 7V4.5h5V7"/><path d="M6.5 7l.8 12a1.5 1.5 0 0 0 1.5 1.4h6.4a1.5 1.5 0 0 0 1.5-1.4l.8-12"/><path d="M10 11v6"/><path d="M14 11v6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.3 2.8 2.8L16 9.6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5"/><path d="M12 16.5h.01"/></symbol>
+</svg>
 
-<main>
-  <div class="title-row">
-    <h1 class="page-title">仕入れ請求書の入力</h1>
-    <a id="excel-download" class="download" href="meisai.xlsx" download="請求書の明細.xlsx">
-      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path d="M10 2v10m0 0-4-4m4 4 4-4M3 15v2h14v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      練習用の Excel をダウンロード
-    </a>
-  </div>
+<div class="app">
 
-  <section class="panel" aria-labelledby="h-invoice">
-    <h2 id="h-invoice"><span class="step">1</span>請求書の情報</h2>
-    <div class="body fields inline">
-      <div class="field">
-        <label for="supplier">仕入先</label>
-        <input type="text" id="supplier" name="supplier" placeholder="例：〇〇株式会社" autocomplete="off">
-      </div>
-      <div class="field">
-        <label for="invoice-date">請求日</label>
-        <input type="date" id="invoice-date" name="invoice_date">
-      </div>
+  <aside class="sidebar">
+    <div class="brand" aria-hidden="true">
+      <svg class="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#2563eb"/><path d="M8.5 21.5h15M11.5 21.5a4.5 4.5 0 0 1 9 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M16 9.5V12M9.8 12.6l1.8 1.8M22.2 12.6l-1.8 1.8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <div class="brand-text"><b>HINATA Works</b><span>ひなた製菓 社内システム</span></div>
     </div>
-  </section>
-
-  <section class="panel" aria-labelledby="h-lines">
-    <h2 id="h-lines"><span class="step">2</span>明細（1行ずつ追加）<span class="count" id="line-count">0件</span></h2>
-    <div class="body">
-      <form id="line-form" class="fields" novalidate autocomplete="off">
-        <div class="field grow">
-          <label for="item-name">品名</label>
-          <input type="text" id="item-name" name="item_name">
-        </div>
-        <div class="field">
-          <label for="item-qty">数量</label>
-          <input type="text" inputmode="numeric" id="item-qty" name="item_qty" class="num-input">
-        </div>
-        <div class="field">
-          <label for="item-price">単価</label>
-          <input type="text" inputmode="numeric" id="item-price" name="item_price" class="num-input">
-        </div>
-        <div class="field">
-          <button type="submit" id="add-btn">追加</button>
-        </div>
-      </form>
-      <p id="line-error" class="error" role="alert" hidden></p>
-
-      <table id="lines-table">
-        <thead>
-          <tr>
-            <th class="no">No.</th>
-            <th>品名</th>
-            <th class="num">数量</th>
-            <th class="num">単価</th>
-            <th class="num">金額</th>
-            <th class="act"><span class="sr-only">操作</span></th>
-          </tr>
-        </thead>
-        <tbody id="lines-body"></tbody>
-        <tfoot>
-          <tr>
-            <th colspan="4" class="total-label">合計（税抜）</th>
-            <td class="num total" id="total">¥0</td>
-            <td class="act"></td>
-          </tr>
-        </tfoot>
-      </table>
+    <div class="nav" aria-hidden="true">
+      <div class="nav-label">販売・仕入管理</div>
+      <div class="nav-item"><svg class="i"><use href="#i-home"/></svg><span class="t">ホーム</span></div>
+      <div class="nav-item"><svg class="i"><use href="#i-cart"/></svg><span class="t">受注</span><span class="nav-badge">3</span></div>
+      <div class="nav-item open"><svg class="i"><use href="#i-box"/></svg><span class="t">仕入</span><svg class="i chev"><use href="#i-chev-d"/></svg></div>
+      <div class="subnav">
+        <div class="sub-item">発注一覧</div>
+        <div class="sub-item active">仕入請求書</div>
+        <div class="sub-item">支払予定</div>
+      </div>
+      <div class="nav-item"><svg class="i"><use href="#i-layers"/></svg><span class="t">在庫</span></div>
+      <div class="nav-item"><svg class="i"><use href="#i-users"/></svg><span class="t">取引先</span></div>
+      <div class="nav-item"><svg class="i"><use href="#i-chart"/></svg><span class="t">レポート</span></div>
+      <div class="nav-sep"></div>
+      <div class="nav-item"><svg class="i"><use href="#i-sliders"/></svg><span class="t">設定</span></div>
     </div>
-  </section>
+    <p class="side-note">※研修用の練習サイトです。入力した内容はどこにも送られません</p>
+  </aside>
 
-  <div class="submit-row">
-    <button type="button" id="submit-btn">登録する</button>
-    <div id="submit-message" role="status" aria-live="polite"></div>
-    <button type="button" id="clear-btn" class="secondary">入力をすべて消す</button>
+  <div class="main">
+    <p class="top-note">※研修用の練習サイトです。入力した内容はどこにも送られません</p>
+
+    <header class="topbar" aria-hidden="true">
+      <div class="crumbs"><span>仕入</span><svg class="i"><use href="#i-chev-r"/></svg><span>仕入請求書</span><svg class="i"><use href="#i-chev-r"/></svg><b>新規入力</b></div>
+      <div class="top-right">
+        <div class="search"><svg class="i"><use href="#i-search"/></svg><span>伝票番号・取引先で検索</span><kbd>Ctrl K</kbd></div>
+        <div class="icon-btn"><svg class="i"><use href="#i-bell"/></svg><i class="pip"></i></div>
+        <div class="icon-btn"><svg class="i"><use href="#i-help"/></svg></div>
+        <div class="user"><span class="avatar">佐</span><span class="uname">経理部 佐藤</span><svg class="i"><use href="#i-chev-d"/></svg></div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wrap">
+
+        <div class="page-head">
+          <div>
+            <div class="title-line">
+              <h1>仕入請求書の新規入力</h1>
+              <span id="status-badge" class="badge draft">下書き</span>
+            </div>
+            <p class="meta">伝票番号 <b>PI-2611-0142</b><span class="sep"></span>担当 経理部 佐藤</p>
+          </div>
+          <a id="excel-download" class="btn outline" href="meisai.xlsx" download="請求書の明細.xlsx">
+            <svg class="i" aria-hidden="true"><use href="#i-download"/></svg>練習用の Excel をダウンロード
+          </a>
+        </div>
+
+        <div id="submit-message" role="status" aria-live="polite"></div>
+
+        <div class="cols">
+          <div class="col-main">
+
+            <section class="card" aria-labelledby="h-invoice">
+              <div class="card-head"><h2 id="h-invoice">基本情報</h2></div>
+              <div class="card-body grid2">
+                <div class="field">
+                  <div class="lab"><label for="supplier">仕入先</label><span class="req" aria-hidden="true">必須</span></div>
+                  <input type="text" id="supplier" name="supplier" placeholder="例：〇〇株式会社" autocomplete="off">
+                </div>
+                <div class="field">
+                  <div class="lab"><label for="invoice-date">請求日</label><span class="req" aria-hidden="true">必須</span></div>
+                  <input type="date" id="invoice-date" name="invoice_date">
+                </div>
+              </div>
+            </section>
+
+            <section class="card" aria-labelledby="h-lines">
+              <div class="card-head">
+                <h2 id="h-lines">明細</h2>
+                <span class="chip" id="line-count">0件</span>
+                <span class="hint">1行ずつ入力して［追加］</span>
+              </div>
+
+              <form id="line-form" class="entry" novalidate autocomplete="off">
+                <div class="field grow">
+                  <div class="lab"><label for="item-name">品名</label></div>
+                  <input type="text" id="item-name" name="item_name" placeholder="例：薄力粉（25kg）">
+                </div>
+                <div class="field">
+                  <div class="lab"><label for="item-qty">数量</label></div>
+                  <input type="text" inputmode="numeric" id="item-qty" name="item_qty" class="num-input" placeholder="0">
+                </div>
+                <div class="field">
+                  <div class="lab"><label for="item-price">単価</label></div>
+                  <input type="text" inputmode="numeric" id="item-price" name="item_price" class="num-input" placeholder="0">
+                </div>
+                <div class="field">
+                  <button type="submit" id="add-btn" class="btn tonal"><svg class="i" aria-hidden="true"><use href="#i-plus"/></svg>追加</button>
+                </div>
+              </form>
+              <p id="line-error" class="error" role="alert" hidden></p>
+
+              <table id="lines-table">
+                <thead>
+                  <tr>
+                    <th class="no">No.</th>
+                    <th>品名</th>
+                    <th class="num">数量</th>
+                    <th class="num">単価</th>
+                    <th class="num">金額</th>
+                    <th class="act"><span class="sr-only">操作</span></th>
+                  </tr>
+                </thead>
+                <tbody id="lines-body"></tbody>
+                <tfoot>
+                  <tr>
+                    <th colspan="4" class="total-label">合計（税抜）</th>
+                    <td class="num total" id="total">¥0</td>
+                    <td class="act"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </section>
+
+          </div>
+
+          <aside class="col-side">
+            <section class="card summary" aria-labelledby="h-summary">
+              <div class="card-head"><h2 id="h-summary">サマリー</h2></div>
+              <div class="card-body">
+                <dl class="sum-list">
+                  <div><dt>仕入先</dt><dd id="sum-supplier" class="muted">未入力</dd></div>
+                  <div><dt>請求日</dt><dd id="sum-date" class="muted">未入力</dd></div>
+                  <div><dt>明細</dt><dd id="sum-count">0件</dd></div>
+                </dl>
+                <div class="sum-total">
+                  <span>合計（税抜）</span>
+                  <strong id="sum-total">¥0</strong>
+                </div>
+                <button type="button" id="submit-btn" class="btn primary block">登録する</button>
+                <button type="button" id="clear-btn" class="btn text block">入力をすべて消す</button>
+              </div>
+            </section>
+          </aside>
+        </div>
+
+      </div>
+    </main>
   </div>
-</main>
+</div>
+
+<div id="toasts" class="toasts" aria-hidden="true"></div>
 
 <script src="app.js"></script>
 </body>
