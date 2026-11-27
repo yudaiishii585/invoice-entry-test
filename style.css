@@ -1,0 +1,225 @@
+/* ひなた製菓 社内システム（研修用）— 白地に紺と青の業務システム風。プロジェクター向けに字は大きめ */
+
+:root {
+  --navy: #1f3a5f;
+  --navy-dark: #162c48;
+  --blue: #2f6fb3;
+  --blue-dark: #255d98;
+  --blue-pale: #eaf2fb;
+  --line: #cfd8e3;
+  --input-line: #93a5ba;
+  --text: #1e2a38;
+  --muted: #5d6b7b;
+  --ok-bg: #e8f5ec;
+  --ok-line: #5aa36f;
+  --ok-text: #1d5a2e;
+  --err-bg: #fdecea;
+  --err-line: #e3a29b;
+  --err-text: #a3251a;
+}
+
+* { box-sizing: border-box; }
+
+html, body { background: #fff; }
+
+body {
+  margin: 0;
+  font-family: "Yu Gothic UI", "Yu Gothic", "Meiryo", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ── ヘッダー ── */
+header.appbar {
+  background: var(--navy);
+  color: #fff;
+  height: 60px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+header.appbar .brand { font-size: 22px; font-weight: 700; letter-spacing: .03em; white-space: nowrap; }
+header.appbar .note { font-size: 15px; color: #cfe0f3; }
+
+main { max-width: 1240px; margin: 0 auto; padding: 18px 32px 40px; }
+
+/* ── 画面タイトルと Excel のリンク ── */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  border-bottom: 3px solid var(--navy);
+}
+h1.page-title { font-size: 26px; margin: 0; color: var(--navy); }
+
+a.download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue);
+  background: #fff;
+  border: 2px solid var(--blue);
+  border-radius: 6px;
+  padding: 6px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.download:hover { background: var(--blue-pale); }
+a.download:focus-visible { outline: 3px solid #8bb8e8; outline-offset: 2px; }
+
+/* ── パネル ── */
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin-bottom: 14px;
+}
+.panel > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  margin: 0;
+  padding: 6px 18px;
+  color: var(--navy);
+  background: var(--blue-pale);
+  border-bottom: 1px solid var(--line);
+  border-radius: 6px 6px 0 0;
+}
+.panel > h2 .step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 16px;
+}
+.panel > h2 .count {
+  margin-left: auto;
+  font-size: 18px;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 14px;
+}
+.panel > .body { padding: 12px 18px; }
+
+/* ── フォーム ── */
+.fields { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field.grow { flex: 1; min-width: 320px; }
+.field label { font-size: 18px; font-weight: 700; color: var(--navy); }
+
+/* 仕入先・請求日はラベルを左に置いて1行に収める */
+.fields.inline { gap: 40px; align-items: center; }
+.fields.inline .field { flex-direction: row; align-items: center; gap: 12px; }
+
+input[type="text"], input[type="date"] {
+  font: inherit;
+  font-size: 20px;
+  padding: 6px 12px;
+  border: 1px solid var(--input-line);
+  border-radius: 4px;
+  color: var(--text);
+  background: #fff;
+}
+input::placeholder { color: #9aa7b6; }
+input:focus { outline: 3px solid #8bb8e8; outline-offset: 0; border-color: var(--blue); }
+#supplier { width: 440px; }
+#invoice-date { width: 230px; }
+#item-name { width: 100%; }
+.num-input { width: 160px; text-align: right; }
+
+button {
+  font: inherit;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 6px 30px;
+  border: 2px solid var(--blue);
+  border-radius: 4px;
+  background: var(--blue);
+  color: #fff;
+  cursor: pointer;
+}
+button:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+button:focus-visible { outline: 3px solid #8bb8e8; outline-offset: 2px; }
+button.secondary { background: #fff; color: var(--navy); border: 1px solid var(--input-line); }
+button.secondary:hover { background: #f1f5fa; }
+button.small { font-size: 18px; font-weight: 600; padding: 0 16px; }
+
+/* ── 明細の表 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 19px;
+}
+thead th {
+  background: #f3f6fa;
+  color: var(--navy);
+  border-top: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  padding: 5px 14px;
+  text-align: left;
+  font-size: 18px;
+  white-space: nowrap;
+}
+tbody td { border-bottom: 1px solid #e3e8ee; padding: 4px 14px; }
+th.no, td.no { width: 64px; text-align: center; color: var(--muted); }
+th.act, td.act { width: 110px; text-align: center; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+th.num { text-align: right; }
+th.num, td.num { width: 170px; }
+tr.empty-row td { text-align: center; color: var(--muted); padding: 18px 0; }
+
+tfoot th, tfoot td { border-top: 2px solid var(--navy); padding: 8px 14px; }
+tfoot .total-label { text-align: right; font-size: 20px; color: var(--navy); }
+tfoot .total { font-size: 24px; font-weight: 700; color: var(--navy); }
+
+.error {
+  background: var(--err-bg);
+  border: 1px solid var(--err-line);
+  color: var(--err-text);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin: 10px 0 0;
+}
+
+/* ── 登録 ── */
+.submit-row { display: flex; align-items: center; gap: 20px; }
+#submit-btn {
+  font-size: 22px;
+  padding: 10px 48px;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+#submit-btn:hover { background: var(--navy-dark); border-color: var(--navy-dark); }
+#clear-btn { margin-left: auto; font-size: 18px; font-weight: 600; padding: 6px 18px; }
+
+#submit-message:empty { display: none; }
+#submit-message { padding: 6px 16px; border-radius: 4px; }
+#submit-message.ok {
+  background: var(--ok-bg);
+  border: 1px solid var(--ok-line);
+  color: var(--ok-text);
+  display: flex;
+  flex-direction: column;
+}
+#submit-message.ok strong { font-size: 20px; }
+#submit-message.ok span { font-size: 18px; }
+#submit-message.error { margin: 0; }

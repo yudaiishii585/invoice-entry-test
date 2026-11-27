@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>仕入れ請求書の入力 | ひなた製菓 社内システム</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="appbar">
+  <div class="brand">ひなた製菓 社内システム</div>
+  <div class="note">※研修用の練習サイトです。入力した内容はどこにも送られません</div>
+</header>
+
+<main>
+  <div class="title-row">
+    <h1 class="page-title">仕入れ請求書の入力</h1>
+    <a id="excel-download" class="download" href="meisai.xlsx" download="請求書の明細.xlsx">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path d="M10 2v10m0 0-4-4m4 4 4-4M3 15v2h14v-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      練習用の Excel をダウンロード
+    </a>
+  </div>
+
+  <section class="panel" aria-labelledby="h-invoice">
+    <h2 id="h-invoice"><span class="step">1</span>請求書の情報</h2>
+    <div class="body fields inline">
+      <div class="field">
+        <label for="supplier">仕入先</label>
+        <input type="text" id="supplier" name="supplier" placeholder="例：〇〇株式会社" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="invoice-date">請求日</label>
+        <input type="date" id="invoice-date" name="invoice_date">
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-lines">
+    <h2 id="h-lines"><span class="step">2</span>明細（1行ずつ追加）<span class="count" id="line-count">0件</span></h2>
+    <div class="body">
+      <form id="line-form" class="fields" novalidate autocomplete="off">
+        <div class="field grow">
+          <label for="item-name">品名</label>
+          <input type="text" id="item-name" name="item_name">
+        </div>
+        <div class="field">
+          <label for="item-qty">数量</label>
+          <input type="text" inputmode="numeric" id="item-qty" name="item_qty" class="num-input">
+        </div>
+        <div class="field">
+          <label for="item-price">単価</label>
+          <input type="text" inputmode="numeric" id="item-price" name="item_price" class="num-input">
+        </div>
+        <div class="field">
+          <button type="submit" id="add-btn">追加</button>
+        </div>
+      </form>
+      <p id="line-error" class="error" role="alert" hidden></p>
+
+      <table id="lines-table">
+        <thead>
+          <tr>
+            <th class="no">No.</th>
+            <th>品名</th>
+            <th class="num">数量</th>
+            <th class="num">単価</th>
+            <th class="num">金額</th>
+            <th class="act"><span class="sr-only">操作</span></th>
+          </tr>
+        </thead>
+        <tbody id="lines-body"></tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4" class="total-label">合計（税抜）</th>
+            <td class="num total" id="total">¥0</td>
+            <td class="act"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <div class="submit-row">
+    <button type="button" id="submit-btn">登録する</button>
+    <div id="submit-message" role="status" aria-live="polite"></div>
+    <button type="button" id="clear-btn" class="secondary">入力をすべて消す</button>
+  </div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
